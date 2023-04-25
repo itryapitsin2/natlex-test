@@ -1,0 +1,56 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type ChartEntity {
+  id: Int!
+  title: String!
+  tpe: ChartType!
+  theme: String!
+}
+
+enum ChartType {
+  BAR
+  COLUMN
+  SPLINE
+}
+
+type Item {
+  id: ID!
+  date: Date!
+  value: Float!
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+type PageContent {
+  charts: [ChartEntity!]!
+  data: [Item!]!
+}
+
+type Query {
+  pageContent(filter: DateRangeFilter!): PageContent!
+}
+
+input DateRangeFilter {
+  from: Date!
+  to: Date!
+}
+
+type Mutation {
+  addChartCard(chart: EditChartInput!): PageContent!
+  editChart(chart: EditChartInput!): PageContent!
+  deleteChart(id: Int!): PageContent!
+}
+
+input EditChartInput {
+  title: String!
+  id: ID
+  tpe: ChartType!
+  theme: String!
+}

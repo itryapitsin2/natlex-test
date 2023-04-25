@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "workspaces": [
+    "backend",
+    "webapp"
+  ],
+  "scripts": {
+    "start-react": "cd webapp && react-scripts start",
+    "build-react": "cd webapp && react-scripts build",
+    "test-react": "cd webapp && react-scripts test",
+    "eject-react": "cd webapp && react-scripts eject",
+    "create-schema": "apollo client:download-schema --endpoint=http://localhost:3001/graphql webapp/schema.graphql",
+    "build-nest": "cd backend && nest build",
+    "start-nest": "cd backend && nest start",
+    "start:dev-nest": "cd backend && nest start --watch",
+    "start:debug-nest": "cd backend && nest start --debug --watch",
+    "start:prod-nest": "cd backend && node dist/main"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 16544,
+  "username": "natlexuser",
+  "password": "natlexuser",
+  "database": "natlex_test",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "src/chart/model/*.ts"
+  ],
+  "cli": {
+    "entitiesDir": "src/chart/model",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  },
+  "dropSchema": true
+}

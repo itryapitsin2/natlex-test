@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  db:
+    hostname: natlex-db
+    container_name: natlex_pg_container
+    image: postgres:15.2
+    restart: always
+    ports:
+      - "16544:5432"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER:-natlexuser}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-natlexuser}"
+      POSTGRES_DB: "${POSTGRES_DB:-natlex_test}"
+    volumes:
+      - ./natlex_test_data:/var/lib/postgresql/data
+    networks:
+      - natlex-network
+
+  pgadmin:
+    container_name: natlex_pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+
+  frontend:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx_data:/etc/nginx/conf.d/
+
+networks:
+  natlex-network:
