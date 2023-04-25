@@ -12,7 +12,7 @@
   </component>
   <component name="Git.Settings">
     <branch-grouping />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/webapp" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,6 +150,7 @@
       <workItem from="1682285056152" duration="9519000" />
       <workItem from="1682334762259" duration="34429000" />
       <workItem from="1682425563843" duration="150000" />
+      <workItem from="1682425718767" duration="159000" />
     </task>
     <task id="LOCAL-00001" summary="Send code to review">
       <created>1682425674751</created>
@@ -158,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682425674752</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Send code to review">
+      <created>1682425866094</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682425866094</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,0 +1,84 @@
+directive @upper on FIELD_DEFINITION
+
+"""
+Direct the client to resolve this field locally, either from the cache or local resolvers.
+"""
+directive @client(
+  """
+  When true, the client will never use the cache for this value. See
+  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
+  """
+  always: Boolean
+) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
+
+"""
+Export this locally resolved field as a variable to be used in the remainder of this query. See
+https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
+"""
+directive @export(
+  """The variable name to export this field as."""
+  as: String!
+) on FIELD
+
+"""
+Specify a custom store key for this result. See
+https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
+"""
+directive @connection(
+  """Specify the store key."""
+  key: String!
+
+  """
+  An array of query argument names to include in the generated custom store key.
+  """
+  filter: [String!]
+) on FIELD
+
+type Chart {
+  id: Int!
+  title: String!
+  tpe: ChartType!
+}
+
+enum ChartType {
+  BAR
+  COLUMN
+  SPLINE
+}
+
+type Item {
+  id: ID!
+  date: Date!
+  value: Float!
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+type PageContent {
+  charts: [Chart!]!
+  data: [Item!]!
+}
+
+type Query {
+  pageContent(filter: DateRangeFilter!): PageContent!
+}
+
+input DateRangeFilter {
+  from: Date!
+  to: Date!
+}
+
+type Mutation {
+  addChartCard(chart: EditChartInput!): PageContent!
+  editChart(chart: EditChartInput!): PageContent!
+  deleteChart(id: Int!): PageContent!
+}
+
+input EditChartInput {
+  title: String!
+  id: ID
+  tpe: ChartType!
+}
